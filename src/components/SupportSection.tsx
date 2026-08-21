@@ -1,0 +1,38 @@
+import { ButtonLink, TextLink } from "./Button";
+import { Container } from "./Container";
+import { Eyebrow } from "./Eyebrow";
+
+/**
+ * Routes to /contact rather than a payment provider — Lofa24 does not process
+ * donations on this site, support is arranged person to person.
+ */
+export function SupportSection() {
+  return (
+    <section className="border-t border-rule bg-paper">
+      <Container className="py-20 sm:py-24">
+        <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr] lg:items-end">
+          <div className="max-w-3xl">
+            <Eyebrow>Support a story</Eyebrow>
+            <h2 className="mt-6 text-[clamp(2rem,4.5vw,3.25rem)]">
+              Rice, bedsheets, baby food, a repaired shopfront. Each one arrived
+              because somebody read a story and asked{" "}
+              <span className="accent">what was needed</span>.
+            </h2>
+            <p className="mt-6 max-w-xl text-[1.0625rem] leading-relaxed text-muted">
+              Several of those people asked to remain anonymous. We do not
+              collect payments on this website — get in touch and we will tell
+              you exactly what is needed, who receives it, and what it changed.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-4 lg:justify-end">
+            <ButtonLink href="/contact" variant="solid">
+              Partner with us
+            </ButtonLink>
+            <TextLink href="/get-involved">Other ways to take part</TextLink>
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
+}
