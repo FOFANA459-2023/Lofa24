@@ -131,6 +131,11 @@ The site builds two ways from the same source.
 | `NEXT_PUBLIC_BASE_PATH` | `/Lofa24` | path prefix for links, assets, and images |
 | `NEXT_PUBLIC_SITE_ORIGIN` | `https://fofana459-2023.github.io` | origin for OG tags and the sitemap |
 
+Before the first run, set **Settings → Pages → Source** to **GitHub Actions**.
+The workflow cannot do this for itself: `configure-pages` has an `enablement`
+input, but it needs a personal access token rather than the built-in
+`GITHUB_TOKEN`, so the one-time toggle stays manual.
+
 Live at **https://fofana459-2023.github.io/Lofa24/**. Build it locally with
 `npm run build:pages` and serve `out/` from a folder named `Lofa24` to
 reproduce the base path exactly.
