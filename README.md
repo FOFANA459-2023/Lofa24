@@ -118,6 +118,44 @@ contact page shows a direct-contact panel instead. Set
 
 ## Deploying
 
-Import the repo on Vercel; no configuration needed. Every route is static, so
-any static host works too — add `output: 'export'` to `next.config.ts` first,
-which disables `next/image` optimisation.
+The site builds two ways from the same source.
+
+### GitHub Pages (static export)
+
+`.github/workflows/deploy-pages.yml` builds and publishes on every push to
+`main`. It runs `npm run build:pages`, which sets three variables:
+
+| Variable | Value | Effect |
+|---|---|---|
+| `GITHUB_PAGES` | `true` | switches `next.config.ts` to `output: "export"` |
+| `NEXT_PUBLIC_BASE_PATH` | `/Lofa24` | path prefix for links, assets, and images |
+| `NEXT_PUBLIC_SITE_ORIGIN` | `https://fofana459-2023.github.io` | origin for OG tags and the sitemap |
+
+Live at **https://fofana459-2023.github.io/Lofa24/**. Build it locally with
+`npm run build:pages` and serve `out/` from a folder named `Lofa24` to
+reproduce the base path exactly.
+
+Three things this setup handles that a plain `output: "export"` does not:
+
+- **Images.** `unoptimized: true` returns `src` untouched, so every photo would
+  point at the domain root and 404. `src/lib/image-loader.ts` is a custom
+  `next/image` loader that applies the base path instead.
+- **Absolute URLs.** `new URL("/stories/x", origin)` silently drops the base
+  path, so `absoluteUrl()` in `src/lib/site.ts` concatenates instead. The
+  sitemap, robots, and OG image tags all go through it.
+- **Jekyll.** `public/.nojekyll` (plus a `touch` in the workflow) stops Pages
+  from discarding the `_next` directory, which would serve the site unstyled.
+
+Renaming the repo means updating `NEXT_PUBLIC_BASE_PATH` in the `build:pages`
+script. Moving to a custom domain means dropping the base path entirely and
+setting `NEXT_PUBLIC_SITE_ORIGIN` to the new domain.
+
+Note that a static export serves the original JPEGs with no resizing — Pages
+has no server to optimise them. The photographs are all under 250 KB, but if
+the site grows, pre-resizing the sources is the fix.
+
+### Vercel
+
+Import the repo; no configuration. Without `GITHUB_PAGES` set, the config falls
+back to a normal server build with image optimisation and no base path, so
+`site.url` in `src/lib/site.ts` should point at the production domain.

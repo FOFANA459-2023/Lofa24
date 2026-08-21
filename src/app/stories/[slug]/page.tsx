@@ -14,6 +14,7 @@ import {
   getStoryBySlug,
   getStorySlugs,
 } from "@/lib/content";
+import { absoluteUrl } from "@/lib/site";
 import { formatDate } from "@/lib/utils";
 
 export function generateStaticParams() {
@@ -35,13 +36,13 @@ export async function generateMetadata(
       title: story.title,
       description: story.dek,
       publishedTime: story.date,
-      images: [{ url: story.cover.src, alt: story.cover.alt }],
+      images: [{ url: absoluteUrl(story.cover.src), alt: story.cover.alt }],
     },
     twitter: {
       card: "summary_large_image",
       title: story.title,
       description: story.dek,
-      images: [story.cover.src],
+      images: [absoluteUrl(story.cover.src)],
     },
   };
 }
