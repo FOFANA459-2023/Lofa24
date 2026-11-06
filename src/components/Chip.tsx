@@ -7,15 +7,16 @@ export function Chip({
 }: {
   children: React.ReactNode;
   className?: string;
-  tone?: "default" | "onImage" | "red";
+  tone?: "default" | "onImage" | "red" | "gold";
 }) {
   return (
     <span
       className={cn(
-        "eyebrow inline-flex items-center rounded-full px-3 py-1.5",
+        "eyebrow inline-flex w-fit items-center rounded-md px-2.5 py-1",
         tone === "default" && "bg-paper text-ink",
-        tone === "onImage" && "bg-white/95 text-ink shadow-sm backdrop-blur-sm",
+        tone === "onImage" && "bg-white/92 text-ink backdrop-blur-sm",
         tone === "red" && "bg-red text-white",
+        tone === "gold" && "bg-gold text-ink",
         className,
       )}
     >

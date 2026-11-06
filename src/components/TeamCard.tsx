@@ -2,11 +2,6 @@ import Image from "next/image";
 import type { TeamMember } from "@/content/types";
 import { cn } from "@/lib/utils";
 
-/**
- * One card, three sizes. `feature` is the founder, `lead` the executive
- * director, and the default is used for directors and the field team — so the
- * hierarchy is legible from the card sizes alone, before you read a word.
- */
 export function TeamCard({
   member,
   size = "default",
@@ -19,12 +14,10 @@ export function TeamCard({
   return (
     <article
       className={cn(
-        "group flex overflow-hidden border border-rule bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lift",
+        "group flex overflow-hidden rounded-[1.35rem] bg-white shadow-card transition-transform duration-300 hover:-translate-y-1",
         horizontal ? "flex-col sm:flex-row" : "flex-col",
       )}
     >
-      {/* Portraits run from 600x600 to 1124x1867, so every one is forced into
-          the same 4:5 frame and anchored to the top to keep faces in. */}
       <div
         className={cn(
           "relative shrink-0 overflow-hidden bg-paper",
@@ -59,10 +52,10 @@ export function TeamCard({
           className={cn(
             "mt-3 leading-[1.05]",
             size === "feature"
-              ? "text-[clamp(1.75rem,3.6vw,2.5rem)]"
+              ? "text-[clamp(1.7rem,3.4vw,2.4rem)]"
               : size === "lead"
-                ? "text-[1.75rem]"
-                : "text-[1.375rem]",
+                ? "text-[1.7rem]"
+                : "text-[1.3rem]",
           )}
         >
           {member.name}

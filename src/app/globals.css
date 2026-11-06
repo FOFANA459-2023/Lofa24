@@ -2,22 +2,25 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  /* Still mostly white. Depth comes from a warm off-white ground that white
-     cards float on, not from flooding the page with brand colour. */
-  --color-ink: #111318;
-  --color-ink-soft: #262b33;
-  --color-muted: #6a6e76;
-  --color-faint: #9ca0a8;
-  --color-rule: #e5e5e1;
-  --color-paper: #f6f6f4;
-  --color-red: #d2131a;
+  --color-ink: #1c1611;
+  --color-ink-soft: #32281f;
+  --color-muted: #6d6458;
+  --color-faint: #9a8f80;
+  --color-rule: #e2d4c2;
+  --color-paper: #f3e7d6;
+  --color-canvas: #faf4ea;
+  --color-red: #c31a22;
+  --color-gold: #c4a35a;
+  --color-canopy: #12261f;
+  --color-leaf: #2d6a4a;
   --color-navy: #0a2a6b;
 
-  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-instrument), ui-serif, Georgia, serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
 
-  --shadow-lift: 0 1px 2px rgb(17 19 24 / 0.04), 0 12px 32px -12px rgb(17 19 24 / 0.16);
+  --shadow-lift: 0 18px 40px -24px rgb(28 22 17 / 0.45);
+  --shadow-card: 0 1px 0 rgb(28 22 17 / 0.04), 0 12px 28px -18px rgb(28 22 17 / 0.28);
 }
 
 @layer base {
@@ -27,7 +30,7 @@
   }
 
   body {
-    background-color: #fff;
+    background-color: var(--color-canvas);
     color: var(--color-ink);
     font-family: var(--font-sans);
     text-rendering: optimizeLegibility;
@@ -38,9 +41,9 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    font-weight: 700;
-    letter-spacing: -0.035em;
-    line-height: 1.02;
+    font-weight: 650;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
     text-wrap: balance;
   }
 
@@ -49,46 +52,55 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-red);
+    outline: 2px solid var(--color-gold);
     outline-offset: 3px;
-    border-radius: 2px;
+    border-radius: 4px;
   }
 
   ::selection {
-    background-color: var(--color-ink);
+    background-color: var(--color-canopy);
     color: #fff;
   }
 }
 
 @layer components {
-  /* Small tracked capitals carry every label, date, and section marker. */
   .eyebrow {
     font-size: 0.6875rem;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.4;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--color-muted);
   }
 
   .numeral {
-    font-size: 0.6875rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 650;
+    letter-spacing: 0.08em;
     color: var(--color-red);
     font-variant-numeric: tabular-nums;
   }
 
-  /* Serif italic, used only to lift one phrase inside a large statement. */
   .accent {
     font-family: var(--font-serif);
     font-style: italic;
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: -0.01em;
   }
 
   .marquee-track {
-    animation: marquee 45s linear infinite;
+    animation: marquee 48s linear infinite;
+  }
+
+  .frame {
+    overflow: hidden;
+    border-radius: 1.35rem;
+  }
+
+  .surface {
+    background: #fff;
+    box-shadow: var(--shadow-card);
   }
 }
 
@@ -121,7 +133,7 @@
   --tw-prose-links: var(--color-ink);
   --tw-prose-bold: var(--color-ink);
   --tw-prose-quotes: var(--color-ink);
-  --tw-prose-quote-borders: var(--color-red);
+  --tw-prose-quote-borders: var(--color-gold);
   --tw-prose-counters: var(--color-muted);
   --tw-prose-bullets: var(--color-red);
   --tw-prose-hr: var(--color-rule);

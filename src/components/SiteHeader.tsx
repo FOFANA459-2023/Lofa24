@@ -59,8 +59,8 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-rule bg-white/80 backdrop-blur-xl">
-        <Container className="flex h-16 items-center justify-between gap-6 sm:h-20">
+      <header className="sticky top-0 z-50 border-b border-white/8 bg-canopy">
+        <Container className="flex h-16 items-center justify-between gap-6 sm:h-[4.5rem]">
           <Link
             href="/"
             aria-label="Lofa24 home"
@@ -72,10 +72,10 @@ export function SiteHeader() {
               width={512}
               height={512}
               priority
-              className="h-8 w-8 sm:h-9 sm:w-9"
+              className="h-8 w-8 rounded-md sm:h-9 sm:w-9"
             />
-            <span className="font-display text-[1.375rem] leading-none font-extrabold tracking-[-0.04em]">
-              Lofa<span className="text-red">24</span>
+            <span className="font-display text-[1.35rem] leading-none font-semibold tracking-[-0.03em] text-white">
+              Lofa<span className="text-gold">24</span>
             </span>
           </Link>
 
@@ -89,10 +89,10 @@ export function SiteHeader() {
                       href={item.href}
                       aria-current={active ? "page" : undefined}
                       className={cn(
-                        "rounded-full px-4 py-2 text-sm font-medium transition-colors",
+                        "rounded-lg px-3.5 py-2 text-[0.8125rem] font-semibold tracking-wide uppercase transition-colors",
                         active
-                          ? "bg-paper text-ink"
-                          : "text-muted hover:bg-paper hover:text-ink",
+                          ? "bg-white/10 text-gold"
+                          : "text-white/70 hover:bg-white/8 hover:text-white",
                       )}
                     >
                       {item.label}
@@ -106,7 +106,7 @@ export function SiteHeader() {
           <div className="flex items-center gap-3">
             <Link
               href="/contact"
-              className="hidden rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-ink-soft lg:inline-flex"
+              className="hidden rounded-lg bg-gold px-4 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-white lg:inline-flex"
             >
               Partner with us
             </Link>
@@ -123,13 +123,13 @@ export function SiteHeader() {
               <span aria-hidden className="relative block h-3 w-5">
                 <span
                   className={cn(
-                    "absolute left-0 block h-[1.5px] w-5 bg-ink transition-transform duration-300",
+                    "absolute left-0 block h-[1.5px] w-5 bg-white transition-transform duration-300",
                     open ? "top-1.5 rotate-45" : "top-0",
                   )}
                 />
                 <span
                   className={cn(
-                    "absolute left-0 block h-[1.5px] w-5 bg-ink transition-transform duration-300",
+                    "absolute left-0 block h-[1.5px] w-5 bg-white transition-transform duration-300",
                     open ? "top-1.5 -rotate-45" : "top-3",
                   )}
                 />
@@ -143,27 +143,30 @@ export function SiteHeader() {
         <div
           id="mobile-nav"
           ref={panelRef}
-          className="fixed inset-0 z-40 flex flex-col bg-white pt-16 sm:pt-20 lg:hidden"
+          className="fixed inset-0 z-40 flex flex-col bg-canopy pt-16 sm:pt-[4.5rem] lg:hidden"
         >
           <nav aria-label="Primary mobile" className="flex-1 overflow-y-auto">
             <ul className="px-5 py-4 sm:px-8">
               {nav.map((item, index) => {
                 const active = isActive(pathname, item.href);
                 return (
-                  <li key={item.href} className="border-b border-rule last:border-0">
+                  <li
+                    key={item.href}
+                    className="border-b border-white/10 last:border-0"
+                  >
                     <Link
                       href={item.href}
                       aria-current={active ? "page" : undefined}
                       onClick={() => setOpen(false)}
                       className="flex items-baseline gap-4 py-4"
                     >
-                      <span className="numeral w-6">
+                      <span className="numeral w-6 text-gold">
                         {String(index + 1).padStart(2, "0")}
                       </span>
                       <span
                         className={cn(
-                          "font-display text-2xl font-bold tracking-[-0.035em]",
-                          active ? "text-red" : "text-ink",
+                          "font-display text-2xl font-semibold tracking-[-0.03em]",
+                          active ? "text-gold" : "text-white",
                         )}
                       >
                         {item.label}
@@ -175,11 +178,11 @@ export function SiteHeader() {
             </ul>
           </nav>
 
-          <div className="border-t border-rule px-5 py-5 sm:px-8">
+          <div className="border-t border-white/10 px-5 py-5 sm:px-8">
             <Link
               href="/contact"
               onClick={() => setOpen(false)}
-              className="flex w-full items-center justify-center rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-white"
+              className="flex w-full items-center justify-center rounded-lg bg-gold px-6 py-3.5 text-sm font-semibold text-ink"
             >
               Partner with us
             </Link>

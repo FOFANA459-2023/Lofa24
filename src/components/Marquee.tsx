@@ -1,12 +1,8 @@
-/**
- * A single dark band across an otherwise white page. Duplicated content makes
- * the loop seamless; the global reduced-motion rule freezes it in place.
- */
 export function Marquee({ items }: { items: string[] }) {
   const line = [...items, ...items];
 
   return (
-    <div className="overflow-hidden border-y border-ink bg-ink py-3.5">
+    <div className="overflow-hidden bg-gold py-3">
       <div className="marquee-track flex w-max">
         {[0, 1].map((copy) => (
           <ul
@@ -17,7 +13,7 @@ export function Marquee({ items }: { items: string[] }) {
             {line.map((item, index) => (
               <li
                 key={`${copy}-${index}`}
-                className="eyebrow flex items-center gap-8 px-8 text-white/70"
+                className="eyebrow flex items-center gap-8 px-8 text-ink"
               >
                 {item}
                 <span aria-hidden className="h-1 w-1 rounded-full bg-red" />

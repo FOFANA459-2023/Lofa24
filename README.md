@@ -14,23 +14,22 @@ npm run lint
 
 ## Design system
 
-Mostly white, with depth rather than colour. Four rules hold it together:
+Photography first, warm paper underneath. Four rules hold it together:
 
-1. **Two grounds.** Pure white and a warm off-white (`paper`). Sections
-   alternate between them so white cards float and the page has rhythm.
-   The dark ink footer and the one dark marquee band are the only heavy blocks.
-2. **Colour is rationed.** Red marks index numerals, the full stop in the
-   tagline, and the "Latest" chip. The photographs carry everything else.
-3. **Three type roles.** Bricolage Grotesque (heavy, tight) for every heading,
-   Inter for body and UI, and Instrument Serif *italic* for the single lifted
-   phrase inside a large statement (`.accent`).
-4. **Depth over decoration.** Cards use a hairline border plus `shadow-lift` on
-   hover with a 1px rise; images scale slowly inside their frame. No gradients,
-   no drop shadows at rest.
+1. **Forest and cream.** The header, heroes, and support band sit on `canopy`
+   (deep green). The rest of the site is a warm canvas (`canvas` / `paper`)
+   so white cards float. Gold, not red, is the second accent.
+2. **Colour is for structure.** Gold marks the ticker, active nav, and lifted
+   phrases. Red is reserved for index numerals. Photographs do the rest.
+3. **Two type roles.** Fraunces for every heading and `.accent` italic, Figtree
+   for body and UI.
+4. **Soft frames.** Cards and photographs use large radii and a rest-state
+   `shadow-card`. Full-bleed heroes carry the layout, not hairline grids.
 
 Two shared classes in `src/app/globals.css` carry the small text: `.eyebrow`
 (tracked capitals for labels and dates) and `.numeral` (red index numbers).
-Use them rather than respelling the styles inline.
+Use them rather than respelling the styles inline. Inner pages share
+`PageHero` so the dark opening band stays consistent.
 
 ## Team hierarchy
 

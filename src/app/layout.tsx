@@ -1,27 +1,20 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Instrument_Serif, Inter } from "next/font/google";
+import { Figtree, Fraunces } from "next/font/google";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const bricolage = Bricolage_Grotesque({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-bricolage",
+  variable: "--font-fraunces",
   display: "swap",
+  axes: ["SOFT", "WONK", "opsz"],
 });
 
-const inter = Inter({
+const figtree = Figtree({
   subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const instrument = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  variable: "--font-instrument",
+  variable: "--font-figtree",
   display: "swap",
 });
 
@@ -52,12 +45,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bricolage.variable} ${inter.variable} ${instrument.variable}`}
+      className={`${fraunces.variable} ${figtree.variable}`}
     >
       <body className="flex min-h-screen flex-col antialiased">
         <a
           href="#main"
-          className="eyebrow sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-100 focus:rounded-full focus:bg-ink focus:px-5 focus:py-3 focus:text-white"
+          className="eyebrow sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-100 focus:rounded-lg focus:bg-canopy focus:px-5 focus:py-3 focus:text-white"
         >
           Skip to content
         </a>

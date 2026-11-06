@@ -11,18 +11,13 @@ const topics = [
 ];
 
 const field =
-  "mt-2.5 w-full rounded-lg border border-rule bg-white px-4 py-3 text-[0.9375rem] text-ink transition-colors placeholder:text-faint focus:border-ink focus:outline-none";
+  "mt-2.5 w-full rounded-lg border border-rule bg-canvas px-4 py-3 text-[0.9375rem] text-ink transition-colors placeholder:text-faint focus:border-canopy focus:outline-none";
 
-/**
- * Frontend-only. With NEXT_PUBLIC_FORMSPREE_ID set, the form posts natively to
- * Formspree and needs no client JavaScript. Without it we show a direct
- * contact panel rather than a form that silently goes nowhere.
- */
 export function ContactForm() {
   if (!site.formspreeId) {
     return (
-      <div className="border border-rule bg-white p-8 shadow-lift sm:p-10">
-        <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-paper">
+      <div className="rounded-[1.35rem] bg-white p-8 shadow-card sm:p-10">
+        <span className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-paper">
           <Mail className="h-5 w-5" aria-hidden />
         </span>
         <h2 className="mt-6 text-[1.75rem] leading-tight">
@@ -36,7 +31,7 @@ export function ContactForm() {
             </p>
             <a
               href={`mailto:${site.email}?subject=${encodeURIComponent("Hello Lofa24")}`}
-              className="mt-7 inline-block font-display text-[clamp(1.375rem,3vw,2rem)] font-bold tracking-[-0.03em] underline decoration-red/50 underline-offset-8 transition-colors hover:text-red"
+              className="mt-7 inline-block font-display text-[clamp(1.375rem,3vw,2rem)] font-semibold tracking-[-0.03em] underline decoration-gold underline-offset-8 transition-colors hover:text-red"
             >
               {site.email}
             </a>
@@ -62,7 +57,7 @@ export function ContactForm() {
     <form
       action={`https://formspree.io/f/${site.formspreeId}`}
       method="POST"
-      className="border border-rule bg-white p-8 shadow-lift sm:p-10"
+      className="rounded-[1.35rem] bg-white p-8 shadow-card sm:p-10"
     >
       <Eyebrow>Send a message</Eyebrow>
 
@@ -127,7 +122,7 @@ export function ContactForm() {
 
       <button
         type="submit"
-        className="group mt-8 inline-flex items-center gap-2.5 rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-ink-soft"
+        className="group mt-8 inline-flex items-center gap-2.5 rounded-lg bg-canopy px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-ink"
       >
         Send message
         <span

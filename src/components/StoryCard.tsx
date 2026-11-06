@@ -18,11 +18,11 @@ export function StoryCard({
   return (
     <article
       className={cn(
-        "group relative flex flex-col overflow-hidden border border-rule bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lift",
+        "group relative flex flex-col overflow-hidden rounded-[1.35rem] bg-white shadow-card transition-transform duration-300 hover:-translate-y-1",
         className,
       )}
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-paper">
+      <div className="relative aspect-[16/11] overflow-hidden bg-paper">
         <Image
           src={story.cover.src}
           alt=""
@@ -32,17 +32,16 @@ export function StoryCard({
           style={{ objectPosition: story.cover.focus ?? "50% 50%" }}
           className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"
         />
+        <div className="absolute inset-0 bg-linear-to-t from-ink/35 to-transparent" />
         <div className="absolute bottom-3 left-3">
-          {/* Every story carries "Community Story", so prefer the more
-              specific second tag when there is one. */}
           <Chip tone="onImage">{story.tags[1] ?? story.tags[0]}</Chip>
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col p-6 sm:p-7">
+      <div className="flex flex-1 flex-col p-6">
         <span className="numeral">{String(index + 1).padStart(2, "0")}</span>
 
-        <h3 className="mt-3 text-[1.5rem] leading-[1.1] sm:text-[1.75rem]">
+        <h3 className="mt-2 text-[1.45rem] leading-[1.12] sm:text-[1.6rem]">
           <Link
             href={`/stories/${story.slug}`}
             className="after:absolute after:inset-0"
@@ -55,17 +54,9 @@ export function StoryCard({
           {story.dek}
         </p>
 
-        <div className="mt-6 flex items-center justify-between gap-4 border-t border-rule pt-4">
-          <p className="eyebrow">
-            <time dateTime={story.date}>{formatDate(story.date)}</time>
-          </p>
-          <span
-            aria-hidden
-            className="text-ink transition-transform duration-300 group-hover:translate-x-1"
-          >
-            &rarr;
-          </span>
-        </div>
+        <p className="eyebrow mt-6 border-t border-rule pt-4">
+          <time dateTime={story.date}>{formatDate(story.date)}</time>
+        </p>
       </div>
     </article>
   );

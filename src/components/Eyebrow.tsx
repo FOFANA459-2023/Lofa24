@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 
-/** Label with a short red tick — the recurring marker for every section. */
 export function Eyebrow({
   children,
   className,
@@ -13,12 +12,18 @@ export function Eyebrow({
   return (
     <p
       className={cn(
-        "eyebrow flex items-center gap-2.5",
-        tone === "light" && "text-white/60",
+        "eyebrow flex items-center gap-3",
+        tone === "light" && "text-gold",
         className,
       )}
     >
-      <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-red" />
+      <span
+        aria-hidden
+        className={cn(
+          "h-px w-7",
+          tone === "light" ? "bg-gold" : "bg-red",
+        )}
+      />
       {children}
     </p>
   );

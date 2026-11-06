@@ -28,7 +28,7 @@ export function StoryGrid({
 
   return (
     <div>
-      <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-4 border-b border-rule pb-6">
+      <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-4">
         <div
           role="group"
           aria-label="Filter stories by topic"
@@ -43,10 +43,10 @@ export function StoryGrid({
                 aria-pressed={selected}
                 onClick={() => setActive(filter)}
                 className={cn(
-                  "rounded-full border px-4 py-2 text-sm font-medium transition-all duration-200",
+                  "rounded-lg border px-3.5 py-2 text-sm font-semibold transition-all duration-200",
                   selected
-                    ? "border-ink bg-ink text-white"
-                    : "border-rule bg-white text-muted hover:border-ink/30 hover:text-ink",
+                    ? "border-canopy bg-canopy text-white"
+                    : "border-rule bg-white text-muted hover:border-gold hover:text-ink",
                 )}
               >
                 {filter}

@@ -2,8 +2,6 @@ import Image from "next/image";
 import type { ImageRef } from "@/content/types";
 import { cn } from "@/lib/utils";
 
-/** Photographs keep their natural orientation instead of being forced into a
-    uniform grid; a lone landscape frame takes the full width. */
 export function Gallery({ images }: { images: ImageRef[] }) {
   if (images.length === 0) return null;
 
@@ -21,7 +19,7 @@ export function Gallery({ images }: { images: ImageRef[] }) {
           >
             <div
               className={cn(
-                "relative overflow-hidden bg-paper",
+                "relative overflow-hidden rounded-[1.35rem] bg-paper",
                 portrait ? "aspect-[3/4]" : "aspect-[16/9]",
               )}
             >

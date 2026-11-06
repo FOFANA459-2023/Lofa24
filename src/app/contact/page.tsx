@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { MapPin, Mic, Users } from "lucide-react";
 import { ContactForm } from "@/components/ContactForm";
 import { Container } from "@/components/Container";
-import { Eyebrow } from "@/components/Eyebrow";
+import { PageHero } from "@/components/PageHero";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -33,27 +33,23 @@ const notes = [
 export default function ContactPage() {
   return (
     <>
-      <Container className="pt-14 pb-14 sm:pt-20">
-        <div className="max-w-3xl">
-          <Eyebrow>Contact</Eyebrow>
-          <h1 className="mt-6 text-[clamp(2.5rem,6.5vw,4.5rem)] leading-[0.98]">
-            Get in touch
-          </h1>
-          <p className="mt-6 text-lg leading-relaxed text-muted">
-            Whether you have a story, want to join the team, or want to support
-            a family we have reported on &mdash; this is the way in.
-          </p>
-        </div>
-      </Container>
+      <PageHero
+        eyebrow="Contact"
+        title="Get in touch"
+        description="Whether you have a story, want to join the team, or want to support a family we have reported on — this is the way in."
+      />
 
-      <Container className="pb-24">
-        <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
+      <Container className="py-14 sm:py-16">
+        <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
           <ContactForm />
 
           <aside className="grid gap-5 sm:grid-cols-2 lg:grid-cols-1">
             {notes.map((note) => (
-              <div key={note.heading} className="border border-rule bg-paper p-7">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white">
+              <div
+                key={note.heading}
+                className="rounded-[1.35rem] bg-white p-7 shadow-card"
+              >
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-paper">
                   <note.icon className="h-5 w-5" aria-hidden />
                 </span>
                 <h2 className="mt-5 text-[1.25rem] leading-tight">

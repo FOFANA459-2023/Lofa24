@@ -8,6 +8,7 @@ export function SectionHead({
   action,
   className,
   as: Tag = "h2",
+  tone = "dark",
 }: {
   eyebrow: string;
   title: string;
@@ -15,6 +16,7 @@ export function SectionHead({
   action?: React.ReactNode;
   className?: string;
   as?: "h1" | "h2";
+  tone?: "dark" | "light";
 }) {
   return (
     <div
@@ -24,19 +26,25 @@ export function SectionHead({
       )}
     >
       <div className="max-w-2xl">
-        <Eyebrow>{eyebrow}</Eyebrow>
+        <Eyebrow tone={tone === "light" ? "light" : "muted"}>{eyebrow}</Eyebrow>
         <Tag
           className={cn(
-            "mt-5",
+            "mt-4",
             Tag === "h1"
-              ? "text-[clamp(2.5rem,6.5vw,4.5rem)]"
-              : "text-[clamp(2rem,4.5vw,3.25rem)]",
+              ? "text-[clamp(2.4rem,6.2vw,4.5rem)]"
+              : "text-[clamp(1.9rem,4.2vw,3.1rem)]",
+            tone === "light" && "text-white",
           )}
         >
           {title}
         </Tag>
         {description ? (
-          <p className="mt-5 text-[1.0625rem] leading-relaxed text-muted">
+          <p
+            className={cn(
+              "mt-5 text-[1.0625rem] leading-relaxed",
+              tone === "light" ? "text-white/70" : "text-muted",
+            )}
+          >
             {description}
           </p>
         ) : null}

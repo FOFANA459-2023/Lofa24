@@ -2,13 +2,14 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 const base =
-  "group inline-flex items-center justify-center gap-2.5 rounded-full px-6 py-3.5 text-sm font-semibold transition-all duration-200";
+  "group inline-flex items-center justify-center gap-2.5 rounded-lg px-5 py-3 text-sm font-semibold tracking-tight transition-all duration-200";
 
 const variants = {
-  solid: "bg-ink text-white hover:bg-ink-soft",
+  solid: "bg-canopy text-white hover:bg-ink",
   red: "bg-red text-white hover:bg-red/90",
-  outline: "border border-rule bg-white text-ink hover:border-ink/40 hover:shadow-lift",
-  light: "border border-white/25 text-white hover:bg-white/10",
+  outline:
+    "border border-rule bg-white text-ink hover:border-gold hover:bg-paper",
+  light: "border border-white/20 bg-white/8 text-white hover:bg-white/14",
 } as const;
 
 export function ButtonLink({
@@ -52,7 +53,7 @@ export function TextLink({
         className,
       )}
     >
-      <span className="border-b border-ink/25 pb-0.5 transition-colors group-hover:border-ink">
+      <span className="border-b border-gold/70 pb-0.5 transition-colors group-hover:border-ink">
         {children}
       </span>
       <span

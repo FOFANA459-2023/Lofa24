@@ -60,40 +60,57 @@ export default async function StoryPage(props: PageProps<"/stories/[slug]">) {
 
   return (
     <article>
-      <Container className="pt-10 sm:pt-14">
-        <Link
-          href="/stories"
-          className="group inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-ink"
-        >
-          <span
-            aria-hidden
-            className="transition-transform duration-300 group-hover:-translate-x-1"
+      <section className="relative overflow-hidden bg-canopy text-white">
+        {!portraitCover ? (
+          <>
+            <Image
+              src={story.cover.src}
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              style={{ objectPosition: story.cover.focus ?? "50% 50%" }}
+              className="object-cover opacity-45"
+            />
+            <div className="absolute inset-0 bg-linear-to-t from-canopy via-canopy/80 to-canopy/50" />
+          </>
+        ) : null}
+
+        <Container className="relative pt-10 pb-14 sm:pt-14 sm:pb-16">
+          <Link
+            href="/stories"
+            className="group inline-flex items-center gap-2 text-sm font-medium text-white/70 transition-colors hover:text-white"
           >
-            &larr;
-          </span>
-          All stories
-        </Link>
+            <span
+              aria-hidden
+              className="transition-transform duration-300 group-hover:-translate-x-1"
+            >
+              &larr;
+            </span>
+            All stories
+          </Link>
 
-        <header className="mt-10 max-w-4xl">
-          <div className="flex flex-wrap gap-2">
-            {story.tags.map((tag) => (
-              <Chip key={tag}>{tag}</Chip>
-            ))}
-          </div>
+          <header className="mt-8 max-w-4xl">
+            <div className="flex flex-wrap gap-2">
+              {story.tags.map((tag) => (
+                <Chip key={tag} tone="onImage">
+                  {tag}
+                </Chip>
+              ))}
+            </div>
 
-          <h1 className="mt-6 text-[clamp(2.25rem,6vw,4.5rem)] leading-[0.99]">
-            {story.title}
-          </h1>
+            <h1 className="mt-6 text-[clamp(2.2rem,5.8vw,4.4rem)] leading-[1.02] text-white">
+              {story.title}
+            </h1>
 
-          <p className="mt-7 max-w-2xl text-xl leading-relaxed text-muted">
-            {story.dek}
-          </p>
-        </header>
-      </Container>
+            <p className="mt-6 max-w-2xl text-xl leading-relaxed text-white/75">
+              {story.dek}
+            </p>
+          </header>
+        </Container>
+      </section>
 
-      {/* Portrait sources are shown whole. Cropping them into a banner would
-          cut the subjects out of their own story. */}
-      <Container className="mt-12">
+      <Container className="mt-8 sm:mt-10">
         {portraitCover ? (
           <div className="grid gap-8 sm:grid-cols-[minmax(0,26rem)_1fr] sm:items-end">
             <Image
@@ -103,9 +120,9 @@ export default async function StoryPage(props: PageProps<"/stories/[slug]">) {
               height={story.cover.height}
               priority
               sizes="(min-width: 640px) 26rem, 100vw"
-              className="h-auto w-full bg-paper"
+              className="h-auto w-full rounded-[1.35rem] bg-paper"
             />
-            <dl className="grid grid-cols-2 gap-6 border-t border-rule pt-6 sm:pb-2">
+            <dl className="grid grid-cols-2 gap-6 rounded-[1.35rem] bg-white p-6 shadow-card sm:p-8">
               <StoryMeta term="Date">
                 <time dateTime={story.date}>{formatDate(story.date)}</time>
               </StoryMeta>
@@ -116,18 +133,18 @@ export default async function StoryPage(props: PageProps<"/stories/[slug]">) {
           </div>
         ) : (
           <>
-            <div className="relative aspect-[16/10] overflow-hidden bg-paper sm:aspect-[2/1]">
+            <div className="relative aspect-[16/10] overflow-hidden rounded-[1.6rem] bg-paper shadow-card sm:aspect-[2/1]">
               <Image
                 src={story.cover.src}
                 alt={story.cover.alt}
                 fill
                 priority
-                sizes="(min-width: 1280px) 1216px, 100vw"
+                sizes="(min-width: 1280px) 1100px, 100vw"
                 style={{ objectPosition: story.cover.focus ?? "50% 50%" }}
                 className="object-cover"
               />
             </div>
-            <dl className="mt-6 grid grid-cols-2 gap-6 border-t border-rule pt-6 sm:grid-cols-4">
+            <dl className="mt-6 grid grid-cols-2 gap-6 rounded-[1.35rem] bg-white p-6 shadow-card sm:grid-cols-4 sm:p-8">
               <StoryMeta term="Date">
                 <time dateTime={story.date}>{formatDate(story.date)}</time>
               </StoryMeta>
@@ -139,7 +156,7 @@ export default async function StoryPage(props: PageProps<"/stories/[slug]">) {
         )}
       </Container>
 
-      <Container className="py-16 sm:py-20">
+      <Container className="py-14 sm:py-16">
         <div className="max-w-[38rem]">
           <Prose>
             <Body />
@@ -147,16 +164,16 @@ export default async function StoryPage(props: PageProps<"/stories/[slug]">) {
         </div>
 
         {story.outcome ? (
-          <aside className="mt-14 max-w-[38rem] border-l-2 border-red bg-paper p-7 sm:p-9">
+          <aside className="mt-12 max-w-[38rem] rounded-[1.35rem] border-l-4 border-gold bg-paper p-7 sm:p-9">
             <Eyebrow>What happened next</Eyebrow>
-            <p className="mt-5 font-display text-[1.375rem] leading-[1.3] font-bold tracking-[-0.03em] sm:text-[1.625rem]">
+            <p className="mt-4 font-display text-[1.3rem] leading-[1.3] font-semibold tracking-[-0.03em] sm:text-[1.5rem]">
               {story.outcome}
             </p>
           </aside>
         ) : null}
 
         {story.gallery.length > 0 ? (
-          <section className="mt-20">
+          <section className="mt-16">
             <Eyebrow>From the visit</Eyebrow>
             <div className="mt-8">
               <Gallery images={story.gallery} />
@@ -166,18 +183,18 @@ export default async function StoryPage(props: PageProps<"/stories/[slug]">) {
       </Container>
 
       {previous || next ? (
-        <Container className="pb-20">
+        <Container className="pb-16">
           <nav
             aria-label="More stories"
-            className="grid gap-5 border-t border-rule pt-10 sm:grid-cols-2"
+            className="grid gap-5 sm:grid-cols-2"
           >
             {previous ? (
               <Link
                 href={`/stories/${previous.slug}`}
-                className="group border border-rule bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-lift"
+                className="group rounded-[1.35rem] bg-white p-7 shadow-card transition-transform duration-300 hover:-translate-y-1"
               >
                 <p className="eyebrow">&larr; Newer story</p>
-                <p className="mt-4 font-display text-[1.375rem] leading-tight font-bold tracking-[-0.03em]">
+                <p className="mt-4 font-display text-[1.3rem] leading-tight font-semibold tracking-[-0.03em]">
                   {previous.title}
                 </p>
               </Link>
@@ -188,10 +205,10 @@ export default async function StoryPage(props: PageProps<"/stories/[slug]">) {
             {next ? (
               <Link
                 href={`/stories/${next.slug}`}
-                className="group border border-rule bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-lift sm:col-start-2 sm:text-right"
+                className="group rounded-[1.35rem] bg-white p-7 shadow-card transition-transform duration-300 hover:-translate-y-1 sm:col-start-2 sm:text-right"
               >
                 <p className="eyebrow sm:justify-end">Older story &rarr;</p>
-                <p className="mt-4 font-display text-[1.375rem] leading-tight font-bold tracking-[-0.03em]">
+                <p className="mt-4 font-display text-[1.3rem] leading-tight font-semibold tracking-[-0.03em]">
                   {next.title}
                 </p>
               </Link>

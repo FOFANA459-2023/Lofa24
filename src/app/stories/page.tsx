@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/Container";
-import { Eyebrow } from "@/components/Eyebrow";
+import { PageHero } from "@/components/PageHero";
 import { StoryGrid } from "@/components/StoryGrid";
 import { SupportSection } from "@/components/SupportSection";
 import { getAllStories, getAllTags } from "@/lib/content";
@@ -14,21 +14,13 @@ export const metadata: Metadata = {
 export default function StoriesPage() {
   return (
     <>
-      <Container className="pt-14 pb-16 sm:pt-20">
-        <div className="max-w-3xl">
-          <Eyebrow>The archive</Eyebrow>
-          <h1 className="mt-6 text-[clamp(2.5rem,6.5vw,4.5rem)] leading-[0.98]">
-            Stories from Lofa County
-          </h1>
-          <p className="mt-6 text-lg leading-relaxed text-muted">
-            We report what people tell us, we say plainly what happened
-            afterwards, and we do not close a file just because the photographs
-            have been taken.
-          </p>
-        </div>
-      </Container>
+      <PageHero
+        eyebrow="The archive"
+        title="Stories from Lofa County"
+        description="We report what people tell us, we say plainly what happened afterwards, and we do not close a file just because the photographs have been taken."
+      />
 
-      <Container className="pb-24">
+      <Container className="py-14 sm:py-16">
         <StoryGrid stories={getAllStories()} tags={getAllTags()} />
       </Container>
 

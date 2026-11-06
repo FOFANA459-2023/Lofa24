@@ -3,6 +3,7 @@ import { HandHeart, Megaphone, Users } from "lucide-react";
 import { ButtonLink } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { Eyebrow } from "@/components/Eyebrow";
+import { PageHero } from "@/components/PageHero";
 
 export const metadata: Metadata = {
   title: "Get Involved",
@@ -52,28 +53,21 @@ const paths = [
 export default function GetInvolvedPage() {
   return (
     <>
-      <Container className="pt-14 pb-16 sm:pt-20">
-        <div className="max-w-3xl">
-          <Eyebrow>Take part</Eyebrow>
-          <h1 className="mt-6 text-[clamp(2.5rem,6.5vw,4.5rem)] leading-[0.98]">
-            Three ways in
-          </h1>
-          <p className="mt-6 text-lg leading-relaxed text-muted">
-            Lofa24 only works because people in the county bring us things, and
-            because people outside it respond. Both of those are open to you.
-          </p>
-        </div>
-      </Container>
+      <PageHero
+        eyebrow="Take part"
+        title="Three ways in"
+        description="Lofa24 only works because people in the county bring us things, and because people outside it respond. Both of those are open to you."
+      />
 
-      <Container className="pb-20">
+      <Container className="py-14 sm:py-16">
         <ol className="grid gap-6 lg:grid-cols-3">
           {paths.map((path, index) => (
             <li
               key={path.title}
-              className="flex flex-col border border-rule bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lift"
+              className="flex flex-col rounded-[1.35rem] bg-white p-8 shadow-card"
             >
               <div className="flex items-center justify-between">
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-paper">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-paper">
                   <path.icon className="h-5 w-5" aria-hidden />
                 </span>
                 <span className="numeral">
@@ -82,9 +76,7 @@ export default function GetInvolvedPage() {
               </div>
 
               <p className="eyebrow mt-7">{path.audience}</p>
-              <h2 className="mt-3 text-[1.75rem] leading-tight">
-                {path.title}
-              </h2>
+              <h2 className="mt-3 text-[1.7rem] leading-tight">{path.title}</h2>
               <p className="mt-4 text-[0.9375rem] leading-relaxed text-muted">
                 {path.body}
               </p>
@@ -94,7 +86,7 @@ export default function GetInvolvedPage() {
                   <li key={point} className="flex gap-3">
                     <span
                       aria-hidden
-                      className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-red"
+                      className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold"
                     />
                     {point}
                   </li>
@@ -115,8 +107,8 @@ export default function GetInvolvedPage() {
         </ol>
       </Container>
 
-      <section className="border-t border-rule bg-paper">
-        <Container className="py-16 sm:py-20">
+      <section className="bg-paper">
+        <Container className="py-14 sm:py-16">
           <div className="max-w-3xl">
             <Eyebrow>A note on money</Eyebrow>
             <p className="mt-6 text-[1.0625rem] leading-[1.8] text-ink">

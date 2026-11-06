@@ -3,6 +3,7 @@ import type { TeamTier } from "@/content/types";
 import { ButtonLink } from "@/components/Button";
 import { Container } from "@/components/Container";
 import { Eyebrow } from "@/components/Eyebrow";
+import { PageHero } from "@/components/PageHero";
 import { TeamCard } from "@/components/TeamCard";
 import { getTeamByTier } from "@/lib/content";
 import { cn } from "@/lib/utils";
@@ -37,43 +38,34 @@ export default function TeamPage() {
 
   return (
     <>
-      <Container className="pt-14 pb-16 sm:pt-20">
-        <div className="max-w-3xl">
-          <Eyebrow>Our team</Eyebrow>
-          <h1 className="mt-6 text-[clamp(2.5rem,6.5vw,4.5rem)] leading-[0.98]">
-            A team from Lofa, reporting on Lofa
-          </h1>
-          <p className="mt-6 text-lg leading-relaxed text-muted">
-            Advocates, creators, editors, and volunteers &mdash; most of them
-            young, all of them working on the county they come from.
-          </p>
-        </div>
-      </Container>
+      <PageHero
+        eyebrow="Our team"
+        title="A team from Lofa, reporting on Lofa"
+        description="Advocates, creators, editors, and volunteers — most of them young, all of them working on the county they come from."
+      />
 
-      {/* The hierarchy runs down a single spine: a hairline with a marker at
-          each tier, and card sizes that shrink as the tier widens. */}
-      <Container className="pb-20 sm:pb-24">
+      <Container className="py-14 sm:py-16">
         <div className="relative">
           <span
             aria-hidden
             className="absolute top-2 bottom-8 left-[3px] hidden w-px bg-rule lg:block"
           />
 
-          <div className="space-y-16 sm:space-y-20">
+          <div className="space-y-14 sm:space-y-16">
             {groups.map((group, groupIndex) => {
               const meta = tiers[group.tier];
               return (
                 <section key={group.tier} className="relative lg:pl-16">
                   <span
                     aria-hidden
-                    className="absolute top-2 left-0 hidden h-[7px] w-[7px] rounded-full bg-red lg:block"
+                    className="absolute top-2 left-0 hidden h-[7px] w-[7px] rounded-full bg-gold lg:block"
                   />
 
                   <div className="flex flex-wrap items-baseline gap-x-5 gap-y-2 border-b border-rule pb-4">
                     <span className="numeral">
                       {String(groupIndex + 1).padStart(2, "0")}
                     </span>
-                    <h2 className="text-[1.375rem] tracking-[-0.03em]">
+                    <h2 className="text-[1.3rem] tracking-[-0.03em]">
                       {meta.label}
                     </h2>
                     <p className="text-sm text-muted">{meta.note}</p>
@@ -82,7 +74,8 @@ export default function TeamPage() {
                   <div
                     className={cn(
                       "mt-8 grid gap-6",
-                      group.tier === "directors" && "lg:grid-cols-3 sm:grid-cols-2",
+                      group.tier === "directors" &&
+                        "sm:grid-cols-2 lg:grid-cols-3",
                       group.tier === "field" && "sm:grid-cols-2 lg:max-w-3xl",
                       group.tier === "executive" && "lg:max-w-4xl",
                     )}
@@ -108,13 +101,13 @@ export default function TeamPage() {
         </div>
       </Container>
 
-      <section className="border-t border-rule bg-paper">
-        <Container className="py-20 sm:py-24">
+      <section className="bg-paper">
+        <Container className="py-16 sm:py-20">
           <div className="max-w-3xl">
             <Eyebrow>Join them</Eyebrow>
-            <h2 className="mt-6 text-[clamp(2rem,4.5vw,3.25rem)]">
+            <h2 className="mt-5 text-[clamp(1.9rem,4.2vw,3.1rem)]">
               Lofa24 is youth-led and runs on volunteers.{" "}
-              <span className="accent">There is room for you.</span>
+              <span className="accent text-red">There is room for you.</span>
             </h2>
             <p className="mt-6 text-[1.0625rem] leading-relaxed text-muted">
               If you want to learn reporting, camera work, editing, audio, or

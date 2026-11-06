@@ -4,10 +4,10 @@ import { Eyebrow } from "@/components/Eyebrow";
 
 export default function NotFound() {
   return (
-    <Container className="py-28 sm:py-36">
-      <div className="max-w-xl">
+    <Container className="py-24 sm:py-32">
+      <div className="max-w-xl rounded-[1.6rem] bg-white p-8 shadow-card sm:p-12">
         <Eyebrow>Error 404</Eyebrow>
-        <h1 className="mt-6 text-[clamp(2.5rem,6.5vw,4.5rem)] leading-[0.98]">
+        <h1 className="mt-5 text-[clamp(2.4rem,6vw,4.2rem)] leading-[0.98]">
           We can&apos;t find that page
         </h1>
         <p className="mt-6 text-lg leading-relaxed text-muted">
